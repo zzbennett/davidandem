@@ -1,0 +1,38 @@
+@(mainHeader: String)(navMenuItems: Seq[String])(guests: Seq[Guest])
+
+@main("David and Emily's Wedding") {
+
+    @centersection("i don't know why I need this string") {
+
+        @myheader(mainHeader)(navMenuItems)
+
+    }{
+        <section id="guestlistBody">
+            <div id="guestListHeading">
+                <div id="todoListHeadingText">
+                    <h3>Guest List</h3>
+                </div>
+            </div>
+            <div id="guestListDiv">
+                <ul id="guestList">
+                    @if(guests.size == 0) {
+                        <div class="guestDiv">
+                            <p>No guests on your guest list.</p>
+                        </div>
+                    } else {
+                        @for(guest <- guests) {
+                            <div class="guestDiv">
+                                <div class="todoItemLabelDiv"><li class="todoItem">@guest.firstName @guest.lastName <span style="color:darkgrey">@guest.rsvp</span></li></div>
+                                <div class="todoItemButtonsDiv"><a href="#">send invite</a></div>
+                            </div>
+                        }
+                    }
+                    <div class="todoItemDiv">
+                        <li class="todoItem"><a href=#><img id="newTodoItemImg" src="/assets/images/Very-Basic-Plus-icon.png" height="1em" ></a></li>
+                    </div>
+                </ul>
+            </div>
+        </section>
+
+    }
+}

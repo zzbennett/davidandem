@@ -1,0 +1,127 @@
+html {
+    background: url(/assets/images/mountains-color.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+}
+body {
+    width: 70%;
+    height: 100%;
+    margin: auto;
+}
+#centerSection {
+    margin:auto;
+    width:70%;
+    background-color: rgba(248,222,172,0.4);
+    height:100%;
+    border-left: 5px solid rgba(248,222,172,0.9);
+    border-right: 5px solid rgba(248,222,172,0.9);
+}
+
+#headerSection {
+    margin:auto;
+    width:90%;
+}
+
+#mainHeaderDiv {
+    font-family: Times New Roman, serif;
+    font-size: 2.25em;
+    margin:auto;
+    width:100%;
+    height:auto;
+    padding-top: 0.5em;
+    text-align: center;
+    color: navy;
+}
+
+#mainHeadingLink:link, #mainHeadingLink:hover, #mainHeadingLink:visited {
+    color: navy;
+    text-decoration: none;
+}
+
+#navMenu {
+    list-style-type:none;
+    margin:auto;
+    width:95%;
+    text-align: center;
+    margin-top: -2.5em;
+    background-color: navy;
+    color: yellow;
+}
+.navMenuItem
+{
+    text-align: center;
+    display:inline;
+    padding: 1em;
+    margin: 0.5em;
+    font-family: Times New Roman, serif;
+}
+.navMenuLink:link,.navMenuLink:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.navMenuLink:hover {
+    color: navy;
+    background: lightgrey;
+    text-decoration: none;
+}
+
+/* main body section on front page */
+#mainSection {
+    width:70%;
+    margin:auto;
+    color: navy;
+    font-family: Century Gothic, sans-serif;
+}
+
+/* TODO page */
+
+#todolistBody {
+    width: 80%;
+    margin:auto;
+    background-color: rgba(248,222,172,0.7);
+    margin-top:2em;
+}
+
+#todoListDiv {
+    width: 100%;
+    margin:auto;
+    border-style: dashed;
+    border-color: darkgray;
+    border-width:1px;
+}
+
+#todoListHeading {
+    font-family: 'Courier New', Courier, monospace;
+    margin-top:-0.5em;
+}
+
+#todoList li {
+    list-style: none;
+}
+
+.todoItemDiv {
+    width: 95%;
+    border-bottom: 1px solid navy ;
+    font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+
+.todoItemLabelDiv {
+    float:left;
+    width: 80%;
+}
+
+.todoItemButtonDiv {
+    float:right;
+    width:20%;
+    text-align:right;
+}
+
+#newTodoItemImg {
+    height: 1em;
+    width: 1em;
+    margin-bottom: -0.1em;
+}

@@ -1,0 +1,38 @@
+@(mainHeader: String)(navMenuItems: Seq[String])(todoItems: Seq[TodoItem])
+
+@main("David and Emily's Wedding") {
+
+    @centersection("i don't know why I need this string") {
+
+        @myheader(mainHeader)(navMenuItems)
+
+    }{
+        <section id="todolistBody">
+            <div id="todoListHeading">
+                <div id="todoListHeadingText">
+                    <h3>Wedding To-Do List</h3>
+                </div>
+            </div>
+            <div id="todoListDiv">
+                <ul id="todoList">
+                @if(todoItems.size == 0) {
+                    <div class="todoItemDiv">
+                        <p>No items in your to-do list.</p>
+                    </div>
+                } else {
+                    @for(todoItem <- todoItems) {
+                        <div class="todoItemDiv">
+                            <div class="todoItemLabelDiv"><li class="todoItem">@todoItem.label</li></div>
+                            <div class="todoItemButtonsDiv"><a href="#">delete</a><a href="#"> edit</a></div>
+                        </div>
+                    }
+                }
+                    <div class="todoItemDiv">
+                        <li class="todoItem"><a href=#><img id="newTodoItemImg" src="/assets/images/Very-Basic-Plus-icon.png" height="1em" ></a></li>
+                    </div>
+                </ul>
+            </div>
+        </section>
+
+    }
+}
