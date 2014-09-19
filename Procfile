@@ -1,1 +1,1 @@
-web:    activator run --http.port=80
+web: target/start -Dhttp.port=${PORT} ${JAVA_OPTS}
