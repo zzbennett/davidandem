@@ -1,0 +1,39 @@
+user authenticated
+    -invitations can have codes printed on them for authentication
+    -david and emillie have their own passwords
+
+dates
+(after wedding) pictures
+announcements
+schedules
+gift thingy
+rsvp
+
+STUFF DAVID AND EMILLIE CAN USE THE WEBSITE FOR
+link to google spreadsheet with budget?
+guest list
+color scheme designer?
+venues + owner's contact info + comments on venue + price (google spreadsheet?)
+
+
+
+
+
+
+
+# --- Rev:1,Ups - 0215063
+
+create table todo_item (
+
+id                        bigint not null,
+
+label                     varchar(255),
+
+constraint pk_todo_item primary key (id)) ;
+
+
+
+
+
+create sequence todo_item_seq;
+

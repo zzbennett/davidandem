@@ -2,14 +2,19 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Authentication
+GET     /login                              controllers.Application.login()
+POST    /login                              controllers.Application.authenticate()
+GET     /logout                             controllers.Application.logout()
+
 # Home page
-GET        /                    controllers.Application.index()
+GET        /                    controllers.Main.index()
 
 # renders main todo page
-GET        /todo                controllers.Application.todo()
+GET        /todo                controllers.Main.todo()
 
 # renders main todo page
-GET        /guests              controllers.Application.guests()
+GET        /guests              controllers.Main.guests()
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file        controllers.Assets.at(path="/public", file)

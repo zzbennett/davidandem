@@ -2,8 +2,10 @@ package controllers;
 
 import models.Guest;
 import models.TodoItem;
+import models.User;
 import play.*;
 import play.api.templates.Html;
+import play.data.Form;
 import play.mvc.*;
 
 import scala.Array;
@@ -17,71 +19,45 @@ import java.util.ArrayList;
 
 public class Application extends Controller {
 
-    public static final String[] mainMenuHeaders = {
-            "pictures",
-            "to-do",
-            "contacts",
-            "guests",
-            "announcements"};
+    // -- Authentication
 
-    public static Result index() {
-        //if signed in (check cookie), skip authentication
-        return ok(index.render("David and Emillie's Wedding", play.libs.Scala.toSeq(mainMenuHeaders), mainBody()));
-    }
+    public static class Login {
 
-    public static Result todo() {
+        public String email;
+        public String password;
 
-        String[] tempTodoItems = {
-                "pictures",
-                "to-do",
-                "contacts",
-                "guests",
-                "announcements"};
-        TodoItem[] todoItems = new TodoItem[5];
-        for( int i = 0; i < 5; i++ ) {
-            todoItems[i] = new TodoItem(new Long(i),tempTodoItems[i]);
+        public String validate() {
+            if(User.authenticate(email, password) == null) {
+                return "Invalid user or password";
+            }
+            return null;
         }
 
-        /*
-        return ok(todo.render("David and Emillie's Wedding",
-                play.libs.Scala.toSeq(mainMenuHeaders),
-                play.libs.Scala.toSeq(TodoItem.all())));
-                */
-        return ok(todo.render("David and Emillie's Wedding",
-                play.libs.Scala.toSeq(mainMenuHeaders),
-                play.libs.Scala.toSeq(todoItems)));
     }
 
-    public static Result guests() {
+    public static Result login() {
+        return ok(
+                login.render(Form.form(Login.class))
+        );
+    }
 
-        String[] tempGuests = {
-                "David",
-                "Liz",
-                "Courtney",
-                "Alex",
-                "Paul",
-                "Jan"};
-        Guest[] guestList = new Guest[tempGuests.length];
-        for( int i = 0; i < tempGuests.length; i++ ) {
-            guestList[i] = new Guest(new Long(i),tempGuests[i],"");
+    public static Result logout() {
+        session().clear();
+        flash("success", "You've been logged out");
+        return redirect(
+                routes.Application.login()
+        );
+    }
+
+    public static Result authenticate() {
+        Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
+        if(loginForm.hasErrors()) {
+            return badRequest(login.render(loginForm));
+        } else {
+            session("email", loginForm.get().email);
+            return redirect(
+                    routes.Application.index()
+            );
         }
-
-        /*
-        return ok(todo.render("David and Emillie's Wedding",
-                play.libs.Scala.toSeq(mainMenuHeaders),
-                play.libs.Scala.toSeq(TodoItem.all())));
-                */
-        return ok(guests.render("David and Emillie's Wedding",
-                play.libs.Scala.toSeq(mainMenuHeaders),
-                play.libs.Scala.toSeq(guestList)));
     }
-
-    private static String mainBody() {
-        String mainBody = "This is the main body of text on the front page";
-        for(int i = 0; i<4; i++) {
-            mainBody += ". " + mainBody;
-        }
-        return mainBody;
-    }
-
 }
